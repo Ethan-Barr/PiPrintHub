@@ -1,0 +1,7 @@
+.printer {
+    width: 200px;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(36, 36, 82);
+}
