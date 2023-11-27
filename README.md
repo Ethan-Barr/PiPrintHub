@@ -1,2 +1,3 @@
 # PiPrintHub
-A way to connect your 3d printer to a easy to use UI
+
+This is a simple project where you will be able to have access to your 3d Printer’s on a simple to use UI where you are able to see the current printers that are activated and what they are printing. You will also be able to see the basic printer settings (Temp for nozzle and print bed) and be able to have the current print times and when they should finish with an estimated time on it as well. The Backend will be made as an simple API that is ran locally per device and wouldn’t be ran in the cloud unless you want to have your own databases added for multiple printers and the UI will be accessible over the device IP that it will be running on for example an RPI4.
