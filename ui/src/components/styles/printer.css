@@ -1,7 +1,102 @@
-.printer {
-    width: 200px;
-    height: fit-content;
-    padding: 10px;
-    border-radius: 20px;
+.printer-container {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 20px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: rgb(36, 36, 82);
+    border-radius: 8px;
+    color: white;
+}
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.Header h3 {
+    margin: 0;
+}
+
+.printer-info {
+    display: flex;
+    align-items: center;
+}
+
+.printer-info h3 {
+    margin: 0;
+    margin-right: 10px;
+}
+
+.refresh-btn {
+    padding: 5px;
+    font-size: 14px;
+    background-color: rgba(36, 36, 82, 0.5);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+.refresh-btn:hover {
+    background-color: rgba(0, 128, 255, 0.5);
+}
+
+.refresh-icon {
+    margin-right: 5px;
+}
+
+.refresh-icon {
+    margin-right: 5px;
+}
+
+.logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.connected {
+    background-color: green;
+}
+
+.disconnected {
+    background-color: red;
+}
+
+.status {
+    text-align: left;
+}
+
+.status p {
+    margin: 5px 0;
+}
+
+.divider-20px {
+    height: 20px;
+}
+
+button {
+    background-color: #2444c3;
+    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 3px 7px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1a3293;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
 }

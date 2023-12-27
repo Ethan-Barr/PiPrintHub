@@ -32,8 +32,9 @@ function Clock() {
 
     return (
         <div>
-            <p style={pStyle}>{time.toLocaleTimeString([], timeOptions)}</p>
             <p style={pStyle}>{time.toLocaleDateString([], dateOptions)}</p>
+            <p style={pStyle}>{time.toLocaleTimeString([], timeOptions)}</p>
+            
         </div>
     );
 }

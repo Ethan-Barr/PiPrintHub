@@ -7,39 +7,40 @@
   color: white;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 }
 
 .time {
   padding: 5px;
+  font-size: 20px;
 }
 
-.MainBody {
+.main-container {
   display: flex;
+  flex: 1;
+  overflow: hidden;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
 }
 
-.Printers {
+.top-printers {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 10px;
+  justify-content: space-around;
+  align-items: flex-start; 
+  overflow: auto;
+  flex-wrap: wrap; 
 }
 
-.printer1,
-.printer2,
-.printer3 {
+.Printer {
+  display: flex;
   flex-direction: column;
   margin: 10px;
+  min-width: 300px; 
 }
-
-
 
 
 .footer {
   position: fixed;
   left: 10px;
   bottom: 5px;
+  border-color: white;
 }

@@ -45,6 +45,8 @@ def check_printer_connection(port: str = Header(default="COM4")):
         return {"connected": False, "error": str(e)}
 
 
+
+
 # Get temp
 @app.get('/temp/bed')
 def bed_temp(port: str = Header(default="COM4")):
