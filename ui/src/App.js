@@ -1,8 +1,8 @@
 import './App.css';
 import Clock from './components/time';
-
 import Printer from './components/printer';
-import TodoList from './components/todo';
+import Todo from './components/todo';
+import printersConfig from './printerConfig';
 
 function App() {
   return (
@@ -13,26 +13,23 @@ function App() {
 
       <div className='main-container'>
         <div className='top-printers'>
-          <div className='printer1'>
-            <Printer printerName={'Ender3 V2 Neo'} />
-          </div>
-          <div className='printer2'>
-            <Printer printerName={'Ender3 V3 SE'} />
-          </div>
-          <div className='printer3'>
-            <Printer printerName={'Ender 5'} />
-          </div>
+          {printersConfig.map((printer, index) => (
+            <div key={index} className={`printer${index + 1}`}>
+              <Printer printerName={printer.name} printerPort={printer.port} printerBaudrate={printer.baudRate} />
+            </div>
+          ))}
         </div>
 
         <div className='divider'></div>
 
         <div className='printjob-list'>
-          <TodoList />
+          <Todo />
         </div>
       </div>
 
       <div className='footer'>
-        <p>Made by Ethan Barr</p>
+      <p>Made by <a href="https://github.com/Ethan-Barr" className='github-link'>Ethan Barr</a></p>
+      <p>Version: 1.0.0</p>
       </div>
     </div>
   );

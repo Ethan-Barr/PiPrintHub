@@ -3,11 +3,12 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: rgb(25, 25, 73);
+  background-color: #191949;
   color: white;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
+
 }
 
 .time {
@@ -17,24 +18,21 @@
 
 .main-container {
   display: flex;
-  flex: 1;
-  overflow: hidden;
-  justify-content: center;
+  overflow: auto;
+  margin-top: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .top-printers {
   display: flex;
-  justify-content: space-around;
   align-items: flex-start; 
-  overflow: auto;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
-.Printer {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  min-width: 300px; 
+.divider {
+  border: 1.5px solid white;
+  margin-right: 30px;
 }
 
 
@@ -43,4 +41,8 @@
   left: 10px;
   bottom: 5px;
   border-color: white;
+}
+
+.github-link {
+  color: inherit;
 }

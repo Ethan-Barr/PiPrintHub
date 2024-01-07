@@ -1,87 +1,116 @@
+/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './styles/printer.css';
 
-const Printer = ({ printerName, printerPort }) => {
+const Printer = ({ printerName, printerPort, printerBaudrate }) => {
     const [bedTemperature, setBedTemperature] = useState('');
     const [hotendTemperature, setHotendTemperature] = useState('');
     const [status, setStatus] = useState('Not connected');
     const [isConnected, setIsConnected] = useState(false);
-    const [isRefreshing, setIsRefreshing] = useState(true); // Added state for 
+    const [isRefreshing, setIsRefreshing] = useState(true);
     const [printJob, setPrintJob] = useState({ name: '', status: '' });
 
+    useEffect(() => {
+        refreshPrinterData();
+    }, [isRefreshing, printerPort, printerBaudrate]);
 
-    // Check status - Connection and stats (Printing, idle, paused, etc.)
     const refreshPrinterData = () => {
         if (isRefreshing) {
-            checkPrinterConnection(printerPort);
+            checkPrinterConnection(printerPort, printerBaudrate);
 
             if (isConnected) {
-                checkBedTemp(printerPort);
-                checkHotendTemp(printerPort);
-                checkPrintJob(printerPort);
+                checkBedTemp(printerPort, printerBaudrate);
+                checkHotendTemp(printerPort, printerBaudrate);
+                checkPrintJob(printerPort, printerBaudrate);
             }
         }
     };
 
-
-    const checkPrinterConnection = (port) => {
+    const checkPrinterConnection = (port, baudrate) => {
         axios.get("http://localhost:8000/printer/connected", {
             headers: {
-                'port': port
+                'port': port,
+                'baudrate': baudrate
             }
         })
             .then(function (response) {
-                setIsConnected(response.data);
-                setStatus(response.data ? 'Connected' : 'Offline');
+                setIsConnected(response.data.connected);
+                setStatus(response.data.connected ? 'Connected' : 'Offline');
             })
             .catch(function (error) {
                 console.error('Error checking connection:', error);
             });
     };
 
-    // Get temp
-    const checkBedTemp = (port) => {
+    const checkBedTemp = (port, baudrate) => {
         axios.get('http://localhost:8000/temp/bed', {
             headers: {
-                'port': port
+                'port': port,
+                'baudrate': baudrate
             }
         })
             .then(function (response) {
-                setBedTemperature(response.data);
+                setBedTemperature(response.data.bed_temperature);
             })
             .catch(function (error) {
                 console.error('Error checking bed temperature:', error);
             });
     };
 
-    const checkHotendTemp = (port) => {
+    const checkHotendTemp = (port, baudrate) => {
         axios.get('http://localhost:8000/temp/hotend', {
             headers: {
-                'port': port
+                'port': port,
+                'baudrate': baudrate
             }
         })
             .then(function (response) {
-                setHotendTemperature(response.data);
+                setHotendTemperature(response.data.hotend_temperature);
             })
             .catch(function (error) {
                 console.error('Error checking hotend temperature:', error);
             });
     };
-    
 
     const pausePrintJob = () => {
-        // Implement the logic to pause the print job using an API request
+        axios.get('http://localhost:8000/print/pause', {
+            headers: {
+                'port': printerPort,
+                'baudrate': printerBaudrate
+            }
+        })
+            .then(function (response) {
+                console.log(response.data);
+                // Add logic for handling the response or updating the UI if needed
+            })
+            .catch(function (error) {
+                console.error('Error pausing print job:', error);
+            });
     };
 
     const stopPrintJob = () => {
-        // Implement the logic to stop the print job using an API request
+        axios.get('http://localhost:8000/print/stop', {
+            headers: {
+                'port': printerPort,
+                'baudrate': printerBaudrate
+            }
+        })
+            .then(function (response) {
+                console.log(response.data);
+                // Add logic for handling the response or updating the UI if needed
+            })
+            .catch(function (error) {
+                console.error('Error stopping print job:', error);
+            });
     };
 
-    const checkPrintJob = (port) => {
+    const checkPrintJob = (port, baudrate) => {
         axios.get('http://localhost:8000/print/job', {
             headers: {
-                'port': port
+                'port': port,
+                'baudrate': baudrate
             }
         })
             .then(function (response) {

@@ -1,37 +1,112 @@
-.todo-list {
-    width: 250px;
-    padding: 20px;
-    border-right: 1px solid #ccc;
+/* styles/todo.css */
+
+/* Scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-h2 {
-    color: #333;
+::-webkit-scrollbar-track {
+    background-color:#666666;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+::-webkit-scrollbar-thumb {
+    background: #515151;
 }
 
-li {
-    margin-bottom: 10px;
+::-webkit-scrollbar-thumb:hover {
+    background-color: #2e2e2e;
 }
 
-button {
-    background-color: #2444c3;
+
+:root {
+    --background-color: #232762;
+}
+
+.Todo {
+    text-align: center;
+    background-color: var(--background-color);
     color: white;
-    padding: 5px 10px;
-    margin-left: 10px;
+    min-height: 80vh;
+    width: 450px;
+    padding: 20px;
+    left: 0%;
+    border-radius: 15px;
+}
+
+.todo-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #515151;
+    border: 1px solid #2e2e2e;
+}
+
+.todo-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.todo-form input,
+.todo-form select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #737373;
+    color: #fff;
+}
+
+.todo-form button {
+    width: calc(100% - 20px);
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
     border: none;
-    border-radius: 3px 7px; 
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #1a3293;
+.todo-form button:hover {
+    background-color: #45a049;
 }
 
-input {
-    padding: 5px;
-    margin-right: 10px;
+.todo-form select {
+    background-color: #666666;
+    color: #fff;
+}
+
+
+
+.todo-item {
+    background-color: #515151;
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: calc(100% - 50px);
+    width: 100%;
+    position: relative;
+    margin: 5px;
+}
+
+.action-icons {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}
+
+.action-icons svg {
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
 }
