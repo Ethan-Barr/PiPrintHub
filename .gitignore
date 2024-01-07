@@ -1,2 +1,10 @@
+*.pyc
+
 .vscode
 .VsCodeCounter
+
+
+/api/src/__pycache__
+/api/test/
+/
+/ui/README.md
