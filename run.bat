@@ -1,4 +1,7 @@
 @echo off
 
-start cmd /k "cd C:\Users\ethan\OneDrive\Documents\GitHub\PiPrintHub\api\src && python running.py"
-start cmd /k "cd C:\Users\ethan\OneDrive\Documents\GitHub\PiPrintHub\ui && npm start"
+cd %~dp0api
+start cmd /k "cd src && python running.py"
+
+cd %~dp0ui
+start npm start
