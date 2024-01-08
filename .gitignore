@@ -7,3 +7,4 @@
 /api/src/__pycache__
 /api/test/
 /ui/README.md
+*.pyc
