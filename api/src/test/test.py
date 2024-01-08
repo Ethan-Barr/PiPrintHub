@@ -1,62 +1,122 @@
 import requests
 
-# Define the base URL for your FastAPI application
-BASE_URL = "http://127.0.0.1:8000"  # Update with the correct URL if needed
+# Change the base URL accordingly
+base_url = "http://localhost:8000"  # Replace with the actual base URL of your FastAPI app
 
-# Define default values for optional parameters
-default_port = "COM4"
-default_temp = 150
-default_speed = 0
 
-def test_hello_world():
-    response = requests.get(f"{BASE_URL}/")
-    print("Hello World Endpoint:")
+
+def test_api():
+    response = requests.get(f"{base_url}/")
     print(response.text)
-    print()
 
-def test_available_ports():
-    response = requests.get(f"{BASE_URL}/available-ports")
-    print("Available Ports Endpoint:")
+def test_get_ports():
+    response = requests.get(f"{base_url}/available-ports")
     print(response.json())
-    print()
 
-def test_check_printer_connection(port=default_port):
-    response = requests.get(f"{BASE_URL}/printer/connected", headers={"port": port})
-    print("Check Printer Connection Endpoint:")
+def test_check_printer_connection():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    response = requests.get(f"{base_url}/printer/connected", headers=headers)
     print(response.json())
-    print()
 
-def test_bed_temp(port=default_port):
-    response = requests.get(f"{BASE_URL}/temp/bed", headers={"port": port})
-    print("Bed Temperature Endpoint:")
+
+
+def test_bed_temp():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    response = requests.get(f"{base_url}/temp/bed", headers=headers)
     print(response.json())
-    print()
 
-def test_set_hotend_temp(temp=default_temp, port=default_port):
-    data = {"temp": temp}
-    response = requests.post(f"{BASE_URL}/temp/hotend/set", headers={"port": port}, json=data)
-    print("Set Hotend Temperature Endpoint:")
+def test_hotend_temp():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    response = requests.get(f"{base_url}/temp/hotend", headers=headers)
     print(response.json())
-    print()
 
-def test_pause_print(port=default_port):
-    response = requests.get(f"{BASE_URL}/print/resume", headers={"port": port})
-    print("Pause Print Endpoint:")
+
+
+def test_set_bed_temp():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    data = {"temp": 60}  # Replace with the actual target bed temperature
+    response = requests.post(f"{base_url}/temp/bed/set", headers=headers, json=data)
     print(response.json())
-    print()
 
-def test_set_fan_speed(speed=default_speed, port=default_port):
-    data = {"speed": speed}
-    response = requests.post(f"{BASE_URL}/control/set-fan-speed", headers={"port": port}, json=data)
-    print("Set Fan Speed Endpoint:")
+def test_set_hotend_temp():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    data = {"temp": 200}  # Replace with the actual target hotend temperature
+    response = requests.post(f"{base_url}/temp/hotend/set", headers=headers, json=data)
     print(response.json())
-    print()
 
-# Run the tests
-# test_hello_world()
-# test_available_ports()
-# test_check_printer_connection()
-# test_bed_temp()
+
+
+def test_pause_print():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    response = requests.get(f"{base_url}/print/pause", headers=headers)
+    print(response.json())
+
+def test_resume_print():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    response = requests.get(f"{base_url}/print/resume", headers=headers)
+    print(response.json())
+
+def test_stop_print():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    response = requests.get(f"{base_url}/print/stop", headers=headers)
+    print(response.json())
+
+
+
+def test_set_fan_speed():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    data = {"speed": 50}  # Replace with the actual fan speed
+    response = requests.post(f"{base_url}/control/set-fan-speed", headers=headers, json=data)
+    print(response.json())
+
+def test_set_fan_off():
+    port = "COM5"  # Replace with the actual port you want to test
+    baudrate = 115200  # Replace with the actual baudrate you want to test
+
+    headers = {"port": port, "baudrate": str(baudrate)}
+    response = requests.get(f"{base_url}/control/set-fan-off", headers=headers)
+    print(response.json())
+
+
+
+
+# Uncomment and call the function you want to test
+# test_api()
+# test_get_ports()
+test_check_printer_connection()
+test_bed_temp()
+test_hotend_temp()
+# test_set_bed_temp()
 # test_set_hotend_temp()
 # test_pause_print()
+# test_resume_print()
+# test_stop_print()
 # test_set_fan_speed()
+# test_set_fan_off()
