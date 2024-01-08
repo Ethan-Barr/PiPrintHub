@@ -29,7 +29,7 @@ function App() {
 
       <div className='footer'>
       <p>Made by <a href="https://github.com/Ethan-Barr" className='github-link'>Ethan Barr</a></p>
-      <p>Version: 1.0.0</p>
+      <p>Version: 1.0.1</p>
       </div>
     </div>
   );
