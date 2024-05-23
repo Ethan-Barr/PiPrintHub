@@ -11,9 +11,9 @@ function Todo() {
     const [task, setTask] = useState('');
     const [printTime, setPrintTime] = useState('');
     const [priority, setPriority] = useState('Low');
-    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
+        // Load data from localStorage when the component mounts
         const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
         setTodos(savedTodos);
     }, []);
@@ -21,26 +21,28 @@ function Todo() {
     const addTodo = (e) => {
         e.preventDefault();
         if (editingTodo) {
+            // Edit existing todo
             const updatedTodos = todos.map((todo) =>
                 todo.id === editingTodo.id ? { ...todo, task, printTime, priority } : todo
             );
             setTodos(updatedTodos);
             setEditingTodo(null);
-            setIsEditing(false);
         } else {
-            const newTodo = { id: Date.now(), task, printTime, priority };
-            setTodos([...todos, newTodo]);
-            localStorage.setItem('todos', JSON.stringify([...todos, newTodo]));
+            // Add new todo
+            setTodos([...todos, { id: Date.now(), task, printTime, priority }]);
         }
         setShowForm(false);
         setTask('');
         setPrintTime('');
         setPriority('Low');
+        // Save the todos to localStorage after modifying
+        localStorage.setItem('todos', JSON.stringify(todos));
     };
 
     const deleteTodo = (id) => {
-        setTodos(todos.filter((todo) => todo.id !== id))
-        localStorage.setItem('todos', JSON.stringify(todos.filter((todo) => todo.id !== id)));
+        setTodos(todos.filter((todo) => todo.id !== id));
+        // Save the todos to localStorage after deleting
+        localStorage.setItem('todos', JSON.stringify(todos));
     };
 
     const editTodo = (todo) => {
@@ -49,24 +51,12 @@ function Todo() {
         setPrintTime(todo.printTime);
         setPriority(todo.priority);
         setShowForm(true);
-        setIsEditing(true);
-    };
-
-    const hideForm = () => {
-        setShowForm(false);
-        setTask('');
-        setPrintTime('');
-        setPriority('Low');
-        if (isEditing) {
-            setEditingTodo(null);
-            setIsEditing(false);
-        }
     };
 
     return (
         <div className="Todo">
             <h1>Job list</h1>
-            <button onClick={showForm ? hideForm : () => setShowForm(true)}>
+            <button onClick={() => setShowForm(!showForm)}>
                 {showForm ? 'Hide Form' : 'Create Task'}
             </button>
             {showForm && (
@@ -97,7 +87,7 @@ function Todo() {
                             <option value="High">High</option>
                         </select>
                     </label>
-                    <button type="submit">{isEditing ? 'Save Todo' : 'Add Todo'}</button>
+                    <button type="submit">{editingTodo ? 'Edit Todo' : 'Add Todo'}</button>
                 </form>
             )}
             <div className="todo-list">

@@ -5,6 +5,7 @@
 
 
 /api/src/__pycache__
-/api/test/
+/api/test
+/docs
 /ui/README.md
 *.pyc
